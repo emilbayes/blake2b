@@ -10,6 +10,7 @@ This module is based on @dcposch
 * This module requires you to pass in a `out` buffer, saving an allocation
 * This module allows you to set the `salt` and `personal` parameters
 * This module exports constants for the parameters in libsodium style
+* Uses a WASM version (where it is supported) for massive performance boosts
 
 All credit goes to @dcposch for doing the hard work of porting the
 implementation from C to Javascript.
