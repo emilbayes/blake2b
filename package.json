@@ -4,13 +4,13 @@
   "description": "Blake2b (64-bit version) in pure Javascript",
   "main": "index.js",
   "dependencies": {
-    "blake2b-wasm": "^1.1.0",
+    "blake2b-wasm": "^2.1.0",
     "nanoassert": "^2.0.0"
   },
   "devDependencies": {
-    "browserify": "^14.4.0",
+    "browserify": "^17.0.0",
     "coverify": "^1.4.1",
-    "tape": "^4.6.3"
+    "tape": "^5.2.2"
   },
   "scripts": {
     "test": "tape test.js",
