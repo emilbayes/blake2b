@@ -1,6 +1,8 @@
 var assert = require('nanoassert')
 var b2wasm = require('blake2b-wasm')
 
+var WASM_LOADED = false
+
 // 64-bit unsigned addition
 // Sets v[a,a+1] += v[b,b+1]
 // v should be a Uint32Array
@@ -276,6 +278,10 @@ function toHex (n) {
 var Proto = Blake2b
 
 module.exports = function createHash (outlen, key, salt, personal, noAssert) {
+  if (WASM_LOADED) {
+    return b2wasm(outlen, key, salt, personal, noAssert)
+  }
+
   if (noAssert !== true) {
     assert(outlen >= BYTES_MIN, 'outlen must be at least ' + BYTES_MIN + ', was given ' + outlen)
     assert(outlen <= BYTES_MAX, 'outlen must be at most ' + BYTES_MAX + ', was given ' + outlen)
@@ -317,7 +323,7 @@ var PERSONALBYTES = module.exports.PERSONALBYTES = 16
 
 b2wasm.ready(function (err) {
   if (!err) {
-    module.exports.WASM_LOADED = true
+    WASM_LOADED = module.exports.WASM_LOADED = true
     module.exports = b2wasm
   }
 })
